@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="min-h-screen">
+      <main className="min-h-screen w-full max-w-[100vw]">
         {/* ヒーローセクション */}
         <section ref={containerRef} className="relative h-[150vh] bg-black overflow-hidden">
           {/* Background with stars */}
@@ -43,10 +43,10 @@ export default function Home() {
           >
             <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-full text-center text-white">
               <h1 className="mb-8">
-                <span className="text-stroke block text-[120px] font-bold tracking-[0.1em] md:text-[180px] leading-none">NEW</span>
-                <span className="mt-2 block text-[60px] font-bold md:text-[90px] leading-none">GAME</span>
+                <span className="text-stroke block text-[80px] md:text-[120px] lg:text-[180px] font-bold tracking-[0.1em] leading-none">NEW</span>
+                <span className="mt-2 block text-[40px] md:text-[60px] lg:text-[90px] font-bold leading-none">GAME</span>
               </h1>
-              <p className="mx-auto max-w-2xl text-lg font-light tracking-[0.1em] md:text-xl mt-12">
+              <p className="mx-auto max-w-2xl text-base md:text-lg lg:text-xl font-light tracking-[0.1em] mt-8 md:mt-12">
                 私たちはインターネット広告の可能性を広げます。
               </p>
               {/* Scroll Icon */}
@@ -81,9 +81,9 @@ export default function Home() {
                 {/* Video Text Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-white text-center">
-                    <p className="text-4xl md:text-5xl font-normal tracking-[0.2em]">
-                      <span className="block mb-6">コンバージョンさせることに</span>
-                      <span className="block mb-6">特化した戦略思考型の</span>
+                    <p className="text-2xl md:text-4xl lg:text-5xl font-normal tracking-[0.2em]">
+                      <span className="block mb-4 md:mb-6">コンバージョンさせることに</span>
+                      <span className="block mb-4 md:mb-6">特化した戦略思考型の</span>
                       <span className="block">Webマーケター集団。</span>
                     </p>
                   </div>

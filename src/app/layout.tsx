@@ -22,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="ja" className="scroll-smooth">
       <body>
-        {children}
+        <div className="relative w-full overflow-x-hidden">
+          {children}
+        </div>
       </body>
     </html>
   )
