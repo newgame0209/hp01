@@ -72,7 +72,13 @@ export default function Contact() {
       {/* Hero Section */}
       <section className="relative bg-black min-h-[60vh] flex items-center">
         <div className="absolute inset-0">
-          <ShootingStars starColor="#9E00FF" starCount={20} minDuration={1500} maxDuration={3000} />
+          <ShootingStars 
+            starColor="#9E00FF" 
+            minDelay={1500} 
+            maxDelay={3000}
+            minSpeed={10}
+            maxSpeed={30}
+          />
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
