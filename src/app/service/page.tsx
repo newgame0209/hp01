@@ -42,11 +42,12 @@ export default function Service() {
             ビジネスの成長を実現します
           </p>
         </motion.div>
-        <ShootingStars
-          starColor="#9E00FF"
-          starCount={20}
-          minDuration={1500}
-          maxDuration={3000}
+        <ShootingStars 
+          starColor="#9E00FF" 
+          minDelay={1000} 
+          maxDelay={2500}
+          minSpeed={5}
+          maxSpeed={25}
         />
       </section>
 

@@ -16,7 +16,13 @@ export default function About() {
       <main className="min-h-screen">
         {/* ヒーローセクション */}
         <section className="relative h-[70vh] bg-black overflow-hidden">
-          <ShootingStars />
+          <ShootingStars 
+            starColor="#9E00FF" 
+            minDelay={1500} 
+            maxDelay={3000}
+            minSpeed={10}
+            maxSpeed={30}
+          />
           <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
             <h1 className="text-8xl font-bold text-white tracking-[0.3em] mb-8">ABOUT</h1>
             <p className="text-xl text-white/80 tracking-[0.5em] font-light mb-24">私たちについて</p>
