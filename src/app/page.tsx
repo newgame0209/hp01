@@ -104,17 +104,26 @@ export default function Home() {
           </div>
 
           {/* Multiple shooting star layers with different colors and speeds */}
-          <ShootingStars
-            starColor="#9E00FF"
-            starCount={20}
-            minDuration={1500}
-            maxDuration={3000}
+          <ShootingStars 
+            starColor="#9E00FF" 
+            minDelay={1500} 
+            maxDelay={3000}
+            minSpeed={10}
+            maxSpeed={30}
           />
-          <ShootingStars
-            starColor="#FFD700"
-            starCount={15}
-            minDuration={2000}
-            maxDuration={4000}
+          <ShootingStars 
+            starColor="#FFD700" 
+            minDelay={2000} 
+            maxDelay={4000}
+            minSpeed={15}
+            maxSpeed={35}
+          />
+          <ShootingStars 
+            starColor="#00FF00" 
+            minDelay={2500} 
+            maxDelay={4500}
+            minSpeed={20}
+            maxSpeed={40}
           />
         </section>
 
