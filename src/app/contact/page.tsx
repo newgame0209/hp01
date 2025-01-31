@@ -49,10 +49,13 @@ export default function Contact() {
       setFormData({ name: "", email: "", company: "", message: "" });
     } catch (error) {
       console.error("送信エラー:", error);
-      setStatus({
-        type: "error",
-        message: error instanceof Error ? error.message : "エラーが発生しました。",
-      });
+      let errorMessage = error.message;
+      if (error.response) {
+        const errorData = await error.response.json();
+        errorMessage = errorData.error || errorMessage;
+        console.error("エラー詳細:", errorData.details);
+      }
+      setStatus({ type: "error", message: errorMessage });
     } finally {
       setIsSubmitting(false);
     }
