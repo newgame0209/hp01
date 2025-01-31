@@ -25,13 +25,26 @@ export async function POST(request: Request) {
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
-      secure: true, // SSL/TLS
+      secure: true,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD
       },
-      debug: true // デバッグログを有効化
+      tls: {
+        rejectUnauthorized: true,
+        minVersion: "TLSv1.2"
+      },
+      debug: true
     });
+
+    // SMTP接続テスト
+    try {
+      await transporter.verify();
+      console.log('SMTP接続テスト成功');
+    } catch (verifyError) {
+      console.error('SMTP接続テストエラー:', verifyError);
+      throw verifyError;
+    }
 
     console.log('メール送信を試みます...');
 
@@ -46,13 +59,17 @@ export async function POST(request: Request) {
       ${message}
     `.trim();
 
-    const info = await transporter.sendMail({
-      from: process.env.SMTP_FROM,
+    const mailOptions = {
+      from: {
+        name: 'お問い合わせフォーム',
+        address: process.env.SMTP_FROM
+      },
       to: process.env.SMTP_TO,
       subject: '【お問い合わせ】Webサイトからのお問い合わせ',
       text: mailBody,
-    });
+    };
 
+    const info = await transporter.sendMail(mailOptions);
     console.log('送信結果:', info);
 
     return NextResponse.json(
@@ -62,6 +79,7 @@ export async function POST(request: Request) {
 
   } catch (error) {
     console.error('エラー詳細:', {
+      name: error.name,
       message: error.message,
       code: error.code,
       command: error.command,

@@ -25,6 +25,10 @@ status = 200
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["nodemailer"]
+
 [build.environment]
   NEXT_USE_NETLIFY_EDGE = "true"
   NEXT_FORCE_EDGE_IMAGES = "true"

@@ -5,7 +5,8 @@ const nextConfig = {
     SMTP_PORT: process.env.SMTP_PORT,
     SMTP_USER: process.env.SMTP_USER,
     SMTP_PASSWORD: process.env.SMTP_PASSWORD,
-    CONTACT_EMAIL: process.env.CONTACT_EMAIL,
+    SMTP_FROM: process.env.SMTP_FROM,
+    SMTP_TO: process.env.SMTP_TO,
   },
   async rewrites() {
     return [
