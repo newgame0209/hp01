@@ -12,18 +12,25 @@ export async function POST(request: Request) {
       );
     }
 
-    // より基本的なSMTP設定
+    // 環境変数の確認ログ
+    console.log('SMTP設定:', {
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      user: process.env.SMTP_USER,
+      from: process.env.SMTP_FROM,
+      to: process.env.SMTP_TO
+    });
+
+    // SMTPサーバーの設定
     const transporter = nodemailer.createTransport({
-      pool: true,  // コネクションプールを使用
-      maxConnections: 1,
-      service: 'Onamae',  // お名前.jpを指定
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
-      secure: true,
+      secure: true, // SSL/TLS
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD
-      }
+      },
+      debug: true // デバッグログを有効化
     });
 
     console.log('メール送信を試みます...');
@@ -40,8 +47,8 @@ export async function POST(request: Request) {
     `.trim();
 
     const info = await transporter.sendMail({
-      from: process.env.SMTP_USER,
-      to: process.env.CONTACT_EMAIL,
+      from: process.env.SMTP_FROM,
+      to: process.env.SMTP_TO,
       subject: '【お問い合わせ】Webサイトからのお問い合わせ',
       text: mailBody,
     });
@@ -54,7 +61,12 @@ export async function POST(request: Request) {
     );
 
   } catch (error) {
-    console.error('送信エラー:', error);
+    console.error('エラー詳細:', {
+      message: error.message,
+      code: error.code,
+      command: error.command,
+      stack: error.stack
+    });
     return NextResponse.json(
       { error: 'メールの送信に失敗しました。' },
       { status: 500 }
