@@ -29,7 +29,7 @@ export default function Contact() {
     setStatus({ type: null, message: "" });
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/.netlify/functions/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
